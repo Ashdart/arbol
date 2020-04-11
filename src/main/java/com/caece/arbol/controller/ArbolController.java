@@ -46,20 +46,12 @@ public class ArbolController {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     public ResponseEntity<Object> createTree(@RequestBody ArbolRequestDto arbolDto) {
-        try {
-            Arbol tree = arbolService.createTree(arbolDto);
-            URI location = ServletUriComponentsBuilder
-                    .fromCurrentRequest()
-                    .path("/").build()
-                    .toUri();
-            return ResponseEntity.created(location).body(tree);
-        } catch (ArbolNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(SimpleResponse.builder()
-                            .message(e.getMessage())
-                            .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                            .build());
-        }
+        Arbol tree = arbolService.createTree(arbolDto);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/").build()
+                .toUri();
+        return ResponseEntity.created(location).body(tree);
     }
 
     @GetMapping("/{id}")
