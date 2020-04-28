@@ -58,7 +58,7 @@ public class ArbolService implements IArbolProvider {
     public Nodo getParent(Long arbolId, Long nodoId) {
         Arbol arbol = arbolRepository.findById(arbolId)
                 .orElseThrow(() -> new ArbolNotFoundException(ModelUtil.ARBOL_NOT_FOUND_ERROR + arbolId));
-
+        //COMENTARIO 1
         if (isEmpty(arbol)) { throw new EmptyRootException(ModelUtil.EMPTY_ROOT); }
         Nodo searchedNode = new Nodo();
         searchNode(arbol.getRoot(), nodoId, searchedNode);

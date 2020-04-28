@@ -63,6 +63,7 @@ public class ArbolController {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     public ResponseEntity<Nodo> getRoot(@NotNull @PathVariable Long id) {
+        //COMENTARIO 2
         Optional<Nodo> node = arbolService.getRoot(id);
         return node.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.noContent()
